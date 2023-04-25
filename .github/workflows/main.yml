@@ -1,0 +1,17 @@
+name: Deploy Using Runner
+on:
+  push:
+    branches: [ "master" ]
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: add 'git'
+        uses: actions/checkout@v3
+        with:
+         path: github_runner
+      - name: Add a fake 'git' to the PATH to force checkout
+        shell: cmd
+        run: |
+          cd D:\custom_actions-runner\_workspace\devopstraining\devopstraining\github_runner
+          copy . D:\devopstraining\deploy /y
